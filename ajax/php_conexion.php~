@@ -1,0 +1,16 @@
+<?php
+	
+	$conexion = mysql_connect("localhost","root","");
+	mysql_select_db("2013curso",$conexion);
+
+	
+	date_default_timezone_set("America/Bogota");
+	$s='$';
+	
+	function limpiar($tags){
+		$tags = strip_tags($tags);
+		return $tags;
+	}
+
+	
+?>

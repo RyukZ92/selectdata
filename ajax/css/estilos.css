@@ -1,0 +1,21 @@
+#banner_sistema {
+    height: 80px;
+    width: 100%;
+}
+.panel-heading2 {
+    color: #333;  
+    background-color: #f5f5f5;  
+    border-color: #ddd; 
+    border:1px solid #ddd; 
+    border-right: 1px solid transparent; 
+    border-left: 1px solid transparent;
+}
+#experiencia-laboral {
+    display:none;
+}
+.lista-temp {
+    background: #FAFAFA; 
+    padding: 2.25%; 
+    border: 1px solid #E6E6E6;
+    margin-top: 2%;
+}

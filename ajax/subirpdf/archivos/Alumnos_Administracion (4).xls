@@ -1,0 +1,33 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Reporte Alumnos</title>
+</head>
+
+<body>
+<table width="100%" border="1">
+  <tr>
+    <td colspan="9">
+    	<center><strong>Administracion | Temporal</strong></center>
+    </td>
+  </tr>
+  <tr>
+    <td width="5%"><center><strong>No.</strong></center></td>
+    <td width="29%"><strong>Apellido y Nombre del Alumno</strong></td>
+    <td width="10%"><center><strong>Nit</strong></center></td>
+    <td width="8%"><center><strong>Telefono</strong></center></td>
+    <td width="11%"><strong>Barrio / Municipio</strong></td>
+    <td width="9%"><center><strong>Estado</strong></center></td>
+    <td width="9%"><center><strong>Salon o Curso</strong></center></td>
+    <td width="10%"><center><strong>Folio</strong></center></td>
+    <td width="9%"><strong>Pension</strong></td>
+  </tr>
+    <tr>
+    <td colspan="8"><div align="right"><strong>Total Acomulado</strong></div></td>
+    <td><div align="right"><strong>$ 0</strong></div></td>
+  </tr>
+  
+</table>
+</body>
+</html>

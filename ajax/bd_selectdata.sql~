@@ -1,0 +1,230 @@
+-- phpMyAdmin SQL Dump
+-- version 3.4.11.1deb2+deb7u1
+-- http://www.phpmyadmin.net
+--
+-- Servidor: localhost
+-- Tiempo de generación: 08-06-2017 a las 01:13:02
+-- Versión del servidor: 1.0.28
+-- Versión de PHP: 5.6.27-1~dotdeb+7.1
+
+SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
+
+--
+-- Base de datos: `bd_selectdata`
+--
+CREATE DATABASE IF NOT EXISTS `bd_selectdata` DEFAULT CHARACTER SET utf8 COLLATE utf8_spanish_ci;
+USE `bd_selectdata`;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `certificados`
+--
+
+CREATE TABLE IF NOT EXISTS `certificados` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `curriculo` int(11) NOT NULL,
+  `descripcion` varchar(100) COLLATE utf8_spanish_ci NOT NULL,
+  `institucion` varchar(100) COLLATE utf8_spanish_ci NOT NULL,
+  `fecha` date NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `curriculo` (`curriculo`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `curriculo`
+--
+
+CREATE TABLE IF NOT EXISTS `curriculo` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `area` varchar(15) COLLATE utf8_spanish_ci NOT NULL,
+  `profesion` varchar(50) COLLATE utf8_spanish_ci NOT NULL,
+  `ocupacion` varchar(50) COLLATE utf8_spanish_ci NOT NULL,
+  `fecha_postulacion` date NOT NULL,
+  `ruta_de_pdf` text COLLATE utf8_spanish_ci NOT NULL,
+  `postulante` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `postulante` (`postulante`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `cursos_realizados`
+--
+
+CREATE TABLE IF NOT EXISTS `cursos_realizados` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `curriculo` int(11) NOT NULL,
+  `descripcion` int(11) NOT NULL,
+  `duracion` varchar(50) COLLATE utf8_spanish_ci NOT NULL,
+  `fecha` varchar(9) COLLATE utf8_spanish_ci NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `curriculo` (`curriculo`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `datos_personales`
+--
+
+CREATE TABLE IF NOT EXISTS `datos_personales` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(50) COLLATE utf8_spanish_ci NOT NULL,
+  `apellido` varchar(50) COLLATE utf8_spanish_ci NOT NULL,
+  `cedula` varchar(10) COLLATE utf8_spanish_ci NOT NULL,
+  `genero` enum('F','M','') COLLATE utf8_spanish_ci NOT NULL DEFAULT '',
+  `fecha_natal` date NOT NULL,
+  `estado_civil` enum('Casado','Soltero','Viudo','Divorciado') COLLATE utf8_spanish_ci NOT NULL DEFAULT 'Soltero',
+  `nacionalidad` varchar(30) COLLATE utf8_spanish_ci NOT NULL,
+  `lugar_natal` varchar(50) COLLATE utf8_spanish_ci NOT NULL,
+  `direccion` text COLLATE utf8_spanish_ci NOT NULL,
+  `telefono_hab` char(11) COLLATE utf8_spanish_ci NOT NULL,
+  `telefono_movil` char(11) COLLATE utf8_spanish_ci NOT NULL,
+  `fecha_actualizacion` date NOT NULL,
+  `hora_actualizacion` time NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci AUTO_INCREMENT=9 ;
+
+--
+-- Volcado de datos para la tabla `datos_personales`
+--
+
+INSERT INTO `datos_personales` (`id`, `nombre`, `apellido`, `cedula`, `genero`, `fecha_natal`, `estado_civil`, `nacionalidad`, `lugar_natal`, `direccion`, `telefono_hab`, `telefono_movil`, `fecha_actualizacion`, `hora_actualizacion`) VALUES
+(1, 'Seijas', 'Seijas', 'V-12345699', 'M', '1986-03-26', 'Soltero', '', 'Carúpano', 'Charallave', '-', '0416-987565', '2017-06-07', '00:20:17'),
+(2, 'José', 'Miguel', '', '', '0000-00-00', '', '', '', '', '', '', '2017-06-07', '20:24:20'),
+(3, 'User', 'Bonillo', '', '', '0000-00-00', '', '', '', '', '', '', '2017-06-07', '20:10:16'),
+(4, 'Pedro', 'Bonillo', '', '', '0000-00-00', '', '', '', '', '', '', '2017-06-06', '20:50:34'),
+(5, 'Raiza', 'Figueras', '', '', '0000-00-00', '', '', '', '', '', '', '2017-06-07', '20:11:33'),
+(6, 'Miguel', 'Caraballo', 'V-21011917', 'M', '1992-04-28', 'Casado', '', 'Carúpano', 'Charallave, Sector La Poza', '0294-331851', '0426-331851', '2017-06-07', '00:20:17'),
+(7, 'Usuario Nombre', 'Usuario Apellido', '', '', '0000-00-00', 'Casado', '', '', '', '', '', '2017-06-07', '20:47:32'),
+(8, 'Prueba Nombre', 'Prueba Apellido', '', '', '0000-00-00', 'Casado', '', '', '', '', '', '2017-06-07', '20:49:26');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `estudios_academicos`
+--
+
+CREATE TABLE IF NOT EXISTS `estudios_academicos` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `curriculo` int(11) NOT NULL,
+  `descripcion` varchar(100) COLLATE utf8_spanish_ci NOT NULL,
+  `institucion` varchar(100) COLLATE utf8_spanish_ci NOT NULL,
+  `fecha_inicio` date NOT NULL,
+  `fecha_fin` date NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `curriculo` (`curriculo`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `experiencia_laboral`
+--
+
+CREATE TABLE IF NOT EXISTS `experiencia_laboral` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `curriculo` int(11) NOT NULL,
+  `cargo` varchar(50) COLLATE utf8_spanish_ci NOT NULL,
+  `descripcion` varchar(100) COLLATE utf8_spanish_ci NOT NULL,
+  `empresa` varchar(100) COLLATE utf8_spanish_ci NOT NULL,
+  `anio_inicio` year(4) NOT NULL,
+  `anio_fin` year(4) NOT NULL,
+  `mes_inicio` text COLLATE utf8_spanish_ci NOT NULL,
+  `mes_fin` text COLLATE utf8_spanish_ci NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `curriculo` (`curriculo`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `usuarios`
+--
+
+CREATE TABLE IF NOT EXISTS `usuarios` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `estatus` tinyint(1) NOT NULL DEFAULT '1',
+  `eliminado` tinyint(1) NOT NULL DEFAULT '0',
+  `username` varchar(30) COLLATE utf8_spanish_ci NOT NULL,
+  `password` char(16) COLLATE utf8_spanish_ci NOT NULL,
+  `key_password` char(40) COLLATE utf8_spanish_ci NOT NULL,
+  `email` varchar(100) COLLATE utf8_spanish_ci NOT NULL,
+  `pregunta_secreta` varchar(40) COLLATE utf8_spanish_ci NOT NULL,
+  `respuesta_secreta` varchar(40) COLLATE utf8_spanish_ci NOT NULL,
+  `nivel` enum('Admin','Secretario','Postulante') COLLATE utf8_spanish_ci NOT NULL DEFAULT 'Postulante',
+  `fecha_creacion` date NOT NULL,
+  `hora_creacion` time NOT NULL,
+  `fecha_actualizacion` date NOT NULL,
+  `hora_actualizacion` time NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci AUTO_INCREMENT=9 ;
+
+--
+-- Volcado de datos para la tabla `usuarios`
+--
+
+INSERT INTO `usuarios` (`id`, `estatus`, `eliminado`, `username`, `password`, `key_password`, `email`, `pregunta_secreta`, `respuesta_secreta`, `nivel`, `fecha_creacion`, `hora_creacion`, `fecha_actualizacion`, `hora_actualizacion`) VALUES
+(1, 1, 0, 'Admin', 'mJWfzaU=', 'c51d3894ae51811dc6e482e09ad734288609971f', 'seijas@mail.com', '', '', 'Admin', '2017-06-06', '17:47:02', '2017-06-07', '20:09:58'),
+(2, 1, 0, 'Jose', 'pMydqpyipmo=', '5912f2a686d20273faa3671e67f88e0d0f41d0cf', 'josemiguel@mail.com', '', '', 'Admin', '2017-06-06', '17:52:27', '2017-06-07', '20:24:20'),
+(3, 1, 0, 'Lenon', 'pJ+YrMnSeZI=', '10f422d5da43a2d82e56d6b15e270b80d8210592', 'user@mail.com', '', '', 'Postulante', '2017-06-06', '20:22:02', '2017-06-07', '20:10:16'),
+(4, 1, 0, 'Pedrito', 'pJqe2sulp2k=', '02b79a3d0f9f8f5ae6f8a1c54801e7017b5e23c5', 'pedrito@gmail.com', '', '', 'Postulante', '2017-06-06', '20:23:14', '2017-06-06', '20:50:34'),
+(5, 1, 0, 'Raiza', 'pM6gp5ikd5U=', 'a0db703d6b7ef0edfec1e8944ad6ac4fa8474188', 'razi23@gmail.com', '', '', 'Postulante', '2017-06-06', '20:31:34', '2017-06-07', '20:11:33'),
+(6, 1, 0, 'Miguel', 'pM7NpsaccmU=', '59fc36f1915f3c2b2069c1346ab3b0f592462805', 'miguelcaraballo@mail.com', '', '', 'Postulante', '2017-06-07', '06:15:07', '2017-06-07', '20:10:41'),
+(7, 1, 0, 'Usuario', 'aGVlbWdm', 'fb77aa5544f2cb40daff9c0f84d6e964386f6f83', 'usuario@mail.com', '', '', 'Secretario', '0000-00-00', '00:00:00', '2017-06-07', '20:47:32'),
+(8, 1, 1, 'Prueba', 'p6uqyZea', '252152a9197d54e9c9dbb20b144a5436ed9ea493', 'prueba@correo.prueba', '', '', 'Admin', '0000-00-00', '00:00:00', '2017-06-07', '20:49:26');
+
+--
+-- Restricciones para tablas volcadas
+--
+
+--
+-- Filtros para la tabla `certificados`
+--
+ALTER TABLE `certificados`
+  ADD CONSTRAINT `certificados_ibfk_1` FOREIGN KEY (`curriculo`) REFERENCES `curriculo` (`id`) ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `curriculo`
+--
+ALTER TABLE `curriculo`
+  ADD CONSTRAINT `curriculo_ibfk_1` FOREIGN KEY (`postulante`) REFERENCES `datos_personales` (`id`) ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `cursos_realizados`
+--
+ALTER TABLE `cursos_realizados`
+  ADD CONSTRAINT `cursos_realizados_ibfk_1` FOREIGN KEY (`curriculo`) REFERENCES `curriculo` (`id`) ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `datos_personales`
+--
+ALTER TABLE `datos_personales`
+  ADD CONSTRAINT `datos_personales_ibfk_1` FOREIGN KEY (`id`) REFERENCES `usuarios` (`id`) ON DELETE NO ACTION ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `estudios_academicos`
+--
+ALTER TABLE `estudios_academicos`
+  ADD CONSTRAINT `estudios_academicos_ibfk_1` FOREIGN KEY (`curriculo`) REFERENCES `curriculo` (`id`) ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `experiencia_laboral`
+--
+ALTER TABLE `experiencia_laboral`
+  ADD CONSTRAINT `experiencia_laboral_ibfk_1` FOREIGN KEY (`curriculo`) REFERENCES `curriculo` (`id`) ON UPDATE CASCADE;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
